@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 在线导入 -->
+<!-- 开发环境版本，包含了用帮助的命令行警告 -->
+{#<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>#}
+<!-- 生产环境版本，优化了尺寸和速度 -->
+{#<script src="https://cdn.jsdelivr.net/npm/vue"></script>#}
+
+
+{#    <link rel="stylesheet" href="{% static 'js/vue.js' %}">#}
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap-3.4.1-dist/css/bootstrap.css' %}">
+</head>
+<body>
+<img src="{% static 'img/yuan.jpg' %}" alt="">
+<label>
+    <input type="text" class="btn btn-primary" value="导入测试">
+</label>
+
+<table border="1">
+    <tr>
+        <td>id</td>
+        <td>name</td>
+        <td>password</td>
+        <td>age</td>
+    </tr>
+    {% for user in user_list %}
+    <tr>
+        <td>{{ user.id }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.password }}</td>
+        <td>{{ user.age }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<!-- 本地导入 -->
+<script src="{% static 'js/vue.js' %}"></script>
+<script> src="{% static 'js/jquery-3.6.0.min.js' %}"  </script>
+<script> src="{% static 'plugins/bootstrap-3.4.1-dist/js/bootstrap.js' %}"  </script>
+
+
+<div id="app">
+    <h1>用户名:<input type="text" v-model="name"/></h1> <br/>
+    <h1>您输入的用户名是: [[name]]</h1>
+</div>
+
+<script type="text/javascript">
+    //创建一个Vue对象
+    var app = new Vue({
+        //指定,该对象代表<div id="app">,也就是说,这个div中的所有内容,都被当前的app对象管理
+        delimiters: ["[[", "]]"],//修改插值符
+        el: "#app",
+        //定义vue中的数据
+        data: {
+            name: ""
+        }
+    });
+</script>
+
+
+
+
+</body>
+</html>

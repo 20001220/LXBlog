@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="{% static 'js/vue.js' %}"></script>
+{#    <link rel="stylesheet" type="text/css" href="{% static 'js/vue.js'%}" />#}
+
+
+
+</head>
+<body>
+
+
+
+
+{#{% verbatim %}#}
+<div id="app">
+    <h1>用户名:<input type="text" v-model="name"/></h1> <br/>
+    <h1>您输入的用户名是: [[name]] </h1>
+</div>
+{#{% endverbatim %}#}
+
+
+<div id="app2"></div>
+
+<script type="text/javascript">
+    //创建一个Vue对象
+    var app = new Vue({
+        delimiters: ["[[", "]]"],//修改插值符
+        //指定,该对象代表<div id="app">,也就是说,这个div中的所有内容,都被当前的app对象管理
+        el: "#app",
+        //定义vue中的数据
+        data: {
+            name: ""
+        }
+    });
+</script>
+
+<script type="text/javascript">
+    var appp = new Vue({
+        el:"#app2",
+        //钩子函数created,该方法在页面显示之后,自动执行
+        created() {
+            console.log("created...");
+        }
+    });
+</script>
+
+<span v-text="msg"></span>
+
+<h1 id="app1" v-text="'今天是'+year+'年'+month+'月'"></h1>
+
+<script>
+var app1 = new Vue({
+    el : "#app1",
+    data : {
+        year : new Date().getFullYear(),
+        month : new Date().getMonth()+1
+    }
+})
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
